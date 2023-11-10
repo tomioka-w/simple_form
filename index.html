@@ -2,20 +2,43 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>サンプルフォーム</title>
+    <title>動的フォーム</title>
 </head>
 <body>
-    <h1>サンプルフォーム</h1>
-    <form id="myForm">
-        <label for="username">ユーザ名:</label>
-        <input type="text" id="username" name="username" required><br><br>
+    <form id="userForm">
+        <!-- ユーザー名の入力欄 -->
+        <div class="inputField">
+            <label for="username">ユーザ名:</label>
+            <input type="text" name="username" id="username">
+        </div>
 
-        <label for="email">メールアドレス:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <input type="submit" value="送信">
+        <!-- ボタン -->
+        <button type="button" id="addMore">さらに追加</button>
     </form>
 
-    <script src="script.js"></script>
+    <!-- JavaScriptをここに配置 -->
+    <script>
+        // JavaScriptのコードをここに記述
+        document.getElementById('addMore').addEventListener('click', function() {
+            // 新しい入力フィールドを作成
+            var newInput = document.createElement('input');
+            newInput.setAttribute('type', 'text');
+            newInput.setAttribute('name', 'username');
+
+            // ラベルの作成
+            var newLabel = document.createElement('label');
+            newLabel.setAttribute('for', 'username');
+            newLabel.textContent = 'ユーザ名:';
+
+            // 新しい入力フィールドをフォームに追加
+            var form = document.getElementById('userForm');
+            var newDiv = document.createElement('div');
+            newDiv.className = 'inputField';
+            newDiv.appendChild(newLabel);
+            newDiv.appendChild(newInput);
+            form.insertBefore(newDiv, form.lastChild);
+        });
+
+    </script>
 </body>
 </html>
